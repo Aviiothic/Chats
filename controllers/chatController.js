@@ -1,9 +1,9 @@
-const Chat = require('../models/chat'); // Import Chat model
+const Chat = require('/home/user/Chats/models/chat'); // Import Chat model
 
 // Get all chats
 async function getAllChats(req, res) {
     let chats = await Chat.find();
-    res.render("AllChats", { chats });
+    res.render("allChats", { chats });
 }
 
 // Render form to create a new chat
@@ -23,15 +23,22 @@ async function createNewChat(req, res) {
 }
 
 //Handle editing of a chat
-function editChat(req, res) {
+async function editChat(req, res) {
     let chatId = req.params.id;
-    let updatedChat = {
-        sender: req.body.sender,
-        receiver: req.body.receiver,
-        message: req.body.message
-    };
-    res.render('editChat', { chatId, updatedChat });
+    let chat = await Chat.findById(chatId);
+    if (!chat) {
+        return res.status(404).send('Chat not found');
+    }   
+    res.render('editChat', {chat});
+}
+
+//handle updation of chat
+async function updateChat(req, res) {
+    let chatId = req.params.id;
+    let updatedChat = req.body;
+    await Chat.findByIdAndUpdate(chatId, updatedChat);
+    res.redirect('/chats');
 }
 
 
-module.exports = { getAllChats, renderNewChatForm, createNewChat, editChat };
+module.exports = { getAllChats, renderNewChatForm, createNewChat, editChat, updateChat};

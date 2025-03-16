@@ -1,7 +1,7 @@
 const express = require('express');
 const port = 8080;
 
-const chatRoutes = require('./routes/chat');
+const chatRoutes = require('./routes/chatsRouter');
 const connectMongoDb = require('./configs/connection'); // Import database connection
 const applyMiddlewares = require('./middlewares/commonMiddleware'); // Middleware for common settings
 

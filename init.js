@@ -1,15 +1,9 @@
-//are wo thoda sa issue ho gya tha same time ka isliye delete kr ke update kiya hu
-
 const mongoose = require('mongoose');
 const Chat = require('./models/chat');
 
 async function main() {
     await mongoose.connect('mongodb://127.0.0.1:27017/whatsapp');
     console.log('Connected to DB');
-
-    // **DELETE ALL PREVIOUS CHATS**
-    await Chat.deleteMany({});
-    console.log('Old chats deleted.');
 
     let allChats = [
         { sender: "Momtu", receiver: "Chirayu", message: "Maggi lete aana" },

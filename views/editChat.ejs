@@ -6,6 +6,11 @@
     <title>Edit Chat</title>
 </head>
 <body>
-    <p>Enter Details</p>
+    <h4>Sender : <%=chat.sender%></h4>
+    <h4>Reciver : <%=chat.receiver%></h4>
+    <form method="POST" action="/chats/<%= chat._id %>?_method=PUT">
+        <textarea rows="5" cols="15" name="message"><%= chat.message %></textarea>
+        <button type="submit">Edit Chat</button>
+    </form>
 </body>
 </html>
