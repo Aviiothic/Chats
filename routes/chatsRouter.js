@@ -1,5 +1,5 @@
 const express = require('express');
-const { getAllChats, renderNewChatForm, createNewChat, editChat, updateChat} = require('../controllers/chatController');
+const { getAllChats, renderNewChatForm, createNewChat, editChat, updateChat, deleteChat} = require('../controllers/chatController');
 
 const router = express.Router();
 
@@ -9,8 +9,7 @@ router.get('/new', renderNewChatForm);
 router.post('/', createNewChat);
 router.get('/:id/edit', editChat);
 router.put('/:id', updateChat);
-
-//router.delete('/:id', deleteChat);
+router.delete('/:id', deleteChat);
 
 //router.route('/').get(getAllChats).post(createNewChat);
 //can also use this syntax to write routes 

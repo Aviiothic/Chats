@@ -40,5 +40,12 @@ async function updateChat(req, res) {
     res.redirect('/chats');
 }
 
+//handle deletion on chat
+async function deleteChat(req, res) {
+    let chatId = req.params.id;
+    await Chat.findByIdAndDelete(chatId);
+    res.redirect('/chats');
+}
 
-module.exports = { getAllChats, renderNewChatForm, createNewChat, editChat, updateChat};
+
+module.exports = { getAllChats, renderNewChatForm, createNewChat, editChat, updateChat, deleteChat};
